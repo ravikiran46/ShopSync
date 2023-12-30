@@ -3,21 +3,26 @@ const app = express()
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const {MongoClient} = require('mongodb')
+const cros = require('cros')
+
+// cros 
+app.use(cros())
+app.use(express.json())
+
+
 
 const dburl = "mongodb+srv://20jr1a4450:20jr1a4450@cluster0.sanptxk.mongodb.net/?retryWrites=true&w=majority"
 const access_token = "bcfea7d7fcfb59aece02211df3a1cfab5a4b4166c88e562448688c1a01062aef3c38b83c8e68b3e5b749bbfd7be0f4508af55084fbb64752e2ce0613f01252ca"
 
-app.use(express.json())
-
-
+// connect to database
 mongoose.connect(dburl).then(console.log("connected to database")).catch(console.error)
 
+//definition of schema
 require('./schema')
 
 
+// register api
 const users = mongoose.model("userData")
-
 app.post('/register',async(req,res)=>{
     const {name,email,password} = req.body
     const encryppassword = await bcrypt.hash(password,10)
@@ -37,6 +42,8 @@ app.post('/register',async(req,res)=>{
     }
 })
 
+
+// login api
 app.post('/login',async(req,res)=>{
     const {email,password} = req.body
     const user =  await users.findOne({email})
@@ -55,6 +62,8 @@ app.post('/login',async(req,res)=>{
 
 })
 
+
+// items api
 app.use('/product_details',require('./routes/products'))
 
 app.listen(5000, ()=>{
