@@ -21,6 +21,12 @@ mongoose.connect(dburl).then(console.log("connected to database")).catch(console
 require('./schema')
 
 
+app.get('/',(req,res)=>{
+    res.send("successful")
+})
+
+
+
 // register api
 const users = mongoose.model("userData")
 app.post('/register',async(req,res)=>{
