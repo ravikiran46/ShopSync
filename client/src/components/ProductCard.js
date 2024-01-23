@@ -1,5 +1,6 @@
 import React from 'react'
 import {Rating} from '@mui/material'
+import {Link} from 'react-router-dom'
 
 export const trimstring=(str)=>{
     if(str.length>25){
@@ -25,13 +26,14 @@ const ProductCard = ({data}) => {
    
 
   return (
+    <Link to={`/product/${data.id}`}>
     <div className='col-span-1 cursor-pointer 
     border-[1px] border-slate-200 bg-slate-50
     rounded-sm p-2   
-    text-center text-sm transition hover:scale-90 rounded-md'>
+    text-center text-sm'>
         <div className='flex flex-col items-center w-full gap-1'>
-            <div className='aspect-square overflow-hidden relative w-full '>
-                <img className='w-full h-full object-contain ' src={data.images[0].image} alt={trimstring(data.name)} />
+            <div className='aspect-square overflow-hidden relative w-full transition hover:scale-95'>
+                <img className='w-full h-full object-contain' src={data.images[0].image} alt={trimstring(data.name)} />
             </div>
             <div className='mt-4'>
                  {trimstring(data.name)}
@@ -43,6 +45,7 @@ const ProductCard = ({data}) => {
             <div className='font-semibold'>{priceformat(data.price)}</div>
         </div>
     </div>
+    </Link>
   )
 }
 

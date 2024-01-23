@@ -14,13 +14,13 @@ app.use(express.json())
 
 
 const dburl=process.env.DB_URI
-const access_token = process.env.ACCESS_TOKEN
+const private_key= process.env.PRIVATE_KEY
 
 // connect to database
 mongoose.connect(dburl).then(console.log("connected to database")).catch(console.error)
 
 //definition of schema
-require('./schema')
+require('./schema')  
 
 
 
@@ -32,7 +32,7 @@ app.post('/register',async(req,res)=>{
     const encryppassword = await bcrypt.hash(password,10)
     try {
         await users.create(
-            {
+            {   
                 name,
                 email,
                 password : encryppassword
@@ -56,14 +56,13 @@ app.post('/login',async(req,res)=>{
     }
     else{
         if(await bcrypt.compare(password,user.password)){
-            const token = jwt.sign({email},access_token)
+            const token = jwt.sign({email},private_key)
            return res.json({access_token : token})
         }
         else{
             return res.send({status:"invalid password"})
         }
     }
-
 })
 
 
