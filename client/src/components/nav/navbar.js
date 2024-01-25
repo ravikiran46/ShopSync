@@ -7,9 +7,7 @@ const navbar = () => {
     return (
       <div className="sticky top-0 w-full z-30 shadow-sm bg-white "> 
         <nav className='py-3 border-b-[2px]'>
-        
         <div className=' grid grid-cols-12 items-center '>
-
             <div className='col-start-1 col-end-4 text-center'>
             <Link to="/" className=' text-blue-600 font-extrabold'>E-shopify</Link>
             </div>

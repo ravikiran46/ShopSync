@@ -19,9 +19,9 @@ const Singleproducts = () => {
     getData();
   });
   return (
-    <>
+    <Home>
     {item.length === 0 ? "Loding...." : <Render item={item}  />}
-    </>
+    </Home>
   )
 }
 
@@ -48,7 +48,6 @@ const Render = (props) => {
 
 
   return (
-    <Home>
     <div className='grid grid-cols-1 md:grid-cols-2 m-5 mr-8'>
       <div>
         <img src="" alt="" />
@@ -91,7 +90,6 @@ const Render = (props) => {
         </div>
         </div>
       </div>
-      </Home>
   )
 }
 
