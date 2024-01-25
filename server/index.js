@@ -69,6 +69,8 @@ app.post('/login',async(req,res)=>{
 // items
 app.use('/',require('./routes/products'))
 
+app.use('/:id',require('./routes/products'))
+
 app.listen(5000, ()=>{
     console.log("connected server")
 })
