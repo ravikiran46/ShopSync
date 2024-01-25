@@ -19,13 +19,16 @@ const navbar = () => {
                 <div className='flex item-center gap-8 md:gap-12'>
                     <div> 
                         <Link to="/account"> 
-                            <RiAccountCircleLine/>
+                            <RiAccountCircleLine className='h-8 w-8'/>
                         </Link>
                     </div>
-                </div>
+                    <div>
                     <Link to="/cart">
-                        <CiShoppingCart/>
+                        <CiShoppingCart className='h-8 w-8'/>
                     </Link>
+                    </div>
+                </div>
+                    
                 </div>
               
             </div>

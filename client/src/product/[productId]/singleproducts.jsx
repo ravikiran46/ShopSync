@@ -49,8 +49,10 @@ const Render = (props) => {
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 m-5 mr-8'>
-      <div>
-        <img src="" alt="" />
+      <div className='grid grid-cols-7 items-center'>
+        <div className='col-start-4 col-end-7'>
+          <img src={images[0].image} alt="Worry..." />
+        </div>
       </div>
       <div>
         <h2 className='text-2xl text-justify'>{name}</h2> 
