@@ -1,10 +1,11 @@
 import React from 'react'
+import Home from '../components/Home'
 
 const CartComp = () => {
   return (
-    <div>
+    <Home>
       cart
-    </div>
+    </Home>
   )
 }
 

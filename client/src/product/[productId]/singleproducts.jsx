@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { ProductContext } from '../../assets/Context'
 import {Rating} from "@mui/material"
 import CountToggle from '../../components/CountToggle'
-
+import Home from '../../components/Home'
 const Singleproducts = () => {
   const {id} = useParams()
   const data = useContext(ProductContext)
@@ -34,6 +34,7 @@ const rating = singlepord && singlepord?.reviews.reduce((acc,item)=> item.rating
 
 
   return (
+    <Home>
     <div className='grid grid-cols-1 md:grid-cols-2 m-5 mr-8'>
       <div>
         <img src="" alt="" />
@@ -73,6 +74,7 @@ const rating = singlepord && singlepord?.reviews.reduce((acc,item)=> item.rating
       </div>
 
     </div>
+    </Home>
   )
 }
 
