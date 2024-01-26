@@ -28,7 +28,6 @@ const Singleproducts = () => {
 const Render = (props) => {
   const {name, reviews, price, description, category, brand
   ,images} = props.item;
-  console.log(images)
   const [amount, setamount] = useState(1);
   const setincrement = () => {
     setamount(amount + 1);
@@ -50,6 +49,9 @@ const Render = (props) => {
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 m-5 mr-8'>
       <div className='grid grid-cols-7 items-center'>
+        <div className='col-start-2 col-end-3'>
+          <Sidebar images={images}/>
+        </div>
         <div className='col-start-4 col-end-7'>
           <img src={images[0].image} alt="Worry..." />
         </div>
@@ -93,6 +95,17 @@ const Render = (props) => {
         </div>
       </div>
   )
+}
+
+const Sidebar = ({images})=>{
+  return(
+    <div className=" grid grid-col-5 aspect-auto relative rounded-lg p-2 cursor-pointer gap-y-5 border-2">
+      {images.map((i)=>{
+        return <div className='border-2 border-slate-100 hover:border-blue-400 rounded'> <img  src={i.image} alt='alt' width={'85px'}/></div>
+      })}
+    </div>
+  )
+
 }
 
 export default Singleproducts
