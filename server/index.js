@@ -38,7 +38,7 @@ app.post('/register',async(req,res)=>{
                 password : encryppassword
             }
         )
-        res.send({status :"ok"})
+        res.send({status : 200})
         
     } catch (error) {
         res.send({status : "error"})
@@ -57,7 +57,7 @@ app.post('/login',async(req,res)=>{
     else{
         if(await bcrypt.compare(password,user.password)){
             const token = jwt.sign({email},private_key)
-           return res.json({access_token : token})
+           return res.send({status :res.json({access_token : token})})
         }
         else{
             return res.send({status:"invalid password"})
