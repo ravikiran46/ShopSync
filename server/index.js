@@ -14,7 +14,7 @@ app.use(express.json())
 
 
 const dburl=process.env.DB_URI
-const private_key= process.env.PRIVATE_KEY
+
 
 // connect to database
 mongoose.connect(dburl).then(console.log("connected to database")).catch(console.error)
@@ -56,7 +56,7 @@ app.post('/login',async(req,res)=>{
     }
     else{
         if(await bcrypt.compare(password,user.password)){
-            const token = jwt.sign({email},private_key)
+            const token = jwt.sign({email},process.env.PRIVATE_KEY)
            return res.send({status :res.json({access_token : token})})
         }
         else{
