@@ -6,7 +6,6 @@ const SignUp = () => {
   const  {register, handleSubmit, setError,formState:{errors, isSubmitting} } = useForm();
   // on submit event handler
   const  onSubmit = async(data) =>{
-    console.log("Data", data);
     try{
       let response  = await axios.post('https://ecommerce-xi-wheat-32.vercel.app/register',{
         name: data.name,

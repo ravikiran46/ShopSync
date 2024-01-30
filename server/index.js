@@ -56,7 +56,7 @@ app.post('/login',async(req,res)=>{
     }
     else{
         if(await bcrypt.compare(password,user.password)){
-            const token = jwt.sign({email},process.env.PRIVATE_KEY)
+            const token = jwt.sign({id : user._id ,name : user.name},process.env.PRIVATE_KEY)
            return res.send({status :  'logged in successfully' ,token:token})
         }
         else{
