@@ -12,7 +12,13 @@ const SignUp = () => {
         email : data.email,
         password : data.password,
       })
-      response.data.status === 200 ? alert('User Created') : alert('User Cannot be created')
+      if(response.data.status===200){
+        alert('User Created')
+        window.location.href='/login'
+      }
+      else{
+       alert('User Cannot be created')
+      }  
     } catch(error){
       setError("root",{
         message : "Something  went wrong!"

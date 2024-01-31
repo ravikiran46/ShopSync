@@ -52,15 +52,15 @@ app.post('/login',async(req,res)=>{
     const {email,password} = req.body
     const user =  await users.findOne({email})
     if(!user){
-      return   res.send({status:"no such user"})
+      return   res.send({status:"No such user"})
     }
     else{
         if(await bcrypt.compare(password,user.password)){
             const token = jwt.sign({id : user._id ,name : user.name},process.env.PRIVATE_KEY)
-           return res.send({status :  'logged in successfully' ,token:token})
+           return res.send({status :  'Logged in successfully' ,token:token})
         }
         else{
-            return res.send({status:"invalid password"})
+            return res.send({status:"Invalid password"})
         }
     }
 })
