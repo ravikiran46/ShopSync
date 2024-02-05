@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Container from "./Container";
 import Banner from "./Banner";
 import ProductCard from "./ProductCard";
-import { ProductContext } from "../assets/Context";
+import { ProductContext } from "../Context/Context";
 import Home from "./Home";
 const Content = () => {
   const data = useContext(ProductContext);

@@ -9,7 +9,7 @@ const navbar = () => {
         <nav className='py-3 border-b-[2px]'>
         <div className='grid grid-cols-13 items-center'>
             <div className='col-start-1 col-end-3 text-center'>
-            <Link to="/" className=' text-blue-600 font-extrabold'>E-shopify</Link>
+            <Link to="/" className=' text-blue-600 font-extrabold'>ShopSync</Link>
             </div>
                 
                 <div className=' col-start-3 col-end-9'>

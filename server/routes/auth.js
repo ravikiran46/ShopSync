@@ -7,7 +7,7 @@ const users = require("../schema")
 route.get('/', authorization , async (req,res)=>{
 
     try{
-        const user = await req.user
+        const user = await users.findOne({ _id : req.user.id})
         res.json(user);
     }catch(err){
         console.log(err)

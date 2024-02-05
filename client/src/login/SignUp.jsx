@@ -68,7 +68,7 @@ const SignUp = () => {
                 </div>
 
                 <button type="submit" disabled={isSubmitting} className="inline-flex items-center px-4 py-2 bg-blue-500 text-white rounded-full hover:bg-blue-600 focus:outline-none">
-                 { isSubmitting? "Loading..." : "Sign up"}
+                 { isSubmitting? ".  .  ." : "Sign up"}
                   <svg className="ml-2 h-4 w-4" fill="none" stroke="currentColor"  viewBox="0 0 24 24">
                     <path d="M5 11L12 5 19 11" />
                   </svg>

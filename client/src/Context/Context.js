@@ -8,7 +8,7 @@ export default function Context({children}){
     const [data,setdata] = useState([])
 
     const api=async()=>{
-    const res = await axios.get('https://ecommerce-xi-wheat-32.vercel.app/')
+    const res = await axios.get('https://ecommerce-xi-wheat-32.vercel.app/product')
     setdata(res.data)
     }
     useEffect(()=>{

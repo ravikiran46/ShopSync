@@ -66,12 +66,12 @@ app.post('/register',async(req,res)=>{
     // items
     app.use('/product',require('./routes/products'))
     
-    app.use('/auth',require('./routes/auth'))
     
     app.use('/proudct/:id',require('./routes/products'))
     
     
     // user info 
+    app.use('/auth',require('./routes/auth'))
     
     
     

@@ -4,12 +4,13 @@ import {Rating} from "@mui/material"
 import CountToggle from '../../components/CountToggle'
 import Home from '../../components/Home'
 import axios from 'axios'
+import LoadingPage from '../../components/Loading'
 const Singleproducts = () => {
   const { id } = useParams();
   const [item, setitem] = useState([]);
   const getData = async () => {
     try {
-      let response = await axios.get(`https://ecommerce-mjv6.vercel.app/${id}`);
+      let response = await axios.get(`https://ecommerce-mjv6.vercel.app/product/${id}`);
       setitem(response.data);
     } catch (error) {
       console.log(error)
@@ -20,7 +21,7 @@ const Singleproducts = () => {
   });
   return (
     <Home>
-    {item.length === 0 ? "Loding...." : <Render item={item}  />}
+    {item.length === 0 ? <LoadingPage/> : <Render item={item}  />}
     </Home>
   )
 }
