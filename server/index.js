@@ -7,6 +7,7 @@ const cors = require('cors')
 const dotenv = require('dotenv')
 dotenv.config()
 const users = require("./schema")
+const cookieParser = require('cookie-parser')
 
 // cros 
 app.use(cors())
@@ -54,12 +55,18 @@ app.post('/register',async(req,res)=>{
         else{
             if(await bcrypt.compare(password,user.password)){
                 const token = jwt.sign({id : user._id ,name : user.name, email : user.email},process.env.PRIVATE_KEY)
-                return res.send({status :  'Logged in successfully' ,token:token})
+                res.cookie('token',token)
+                return res.send({status : 'Logged in successfully' , token : token})
             }
             else{
                 return res.send({status:"Invalid password"})
             }
         }
+    })
+
+    app.get('/logout',(req,res)=>{
+        res.clearCookie('token');
+        return res.json({status : "success"});
     })
     
     
