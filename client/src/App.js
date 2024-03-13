@@ -5,7 +5,7 @@ import Content from "./components/content";
 import Login from "./login/Login";
 import SignUp from "./login/SignUp";
 import Forgotpassword from "./login/Forgotpassword";
-// import Accountpage from "./account/AccountPage";
+import Accountpage from "./account/AccountPage";
 function App() {
   return (
     <>
@@ -16,7 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/Forgotpassword" element={<Forgotpassword />} />
-        {/* <Route path="/account" element={<Accountpage/>}/> */}
+        <Route path="/account" element={<Accountpage/>}/>
       </Routes>
     </>
   );

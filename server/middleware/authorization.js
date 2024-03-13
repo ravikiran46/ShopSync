@@ -7,11 +7,11 @@ module.exports = function (req,res,next){
     // get token from header
     const token = req.header("x-aut-token")
 
-    // chech if token
+    // check if token is given or not
     if(!token){
         res.send(401).json({msg: "No token  provided"})
     }
-        // verify token
+    // verify token
     try {
         const decoded = jwt.verify(token,process.env.PRIVATE_KEY)
         req.user = decoded

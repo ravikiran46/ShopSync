@@ -2,7 +2,7 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import axios from 'axios';
 const Login = () => {
-  const  {register, handleSubmit, setError,formState:{errors, isSubmitting} } = useForm();
+  const  {register, handleSubmit, setError,formState:{errors} } = useForm();
 
   const onsumbit = async(data)=>{
     try{
@@ -13,7 +13,8 @@ const Login = () => {
         if(!res.data.token){ 
             throw new Error(res.data.status)
         }else{
-           window.localStorage.setItem("token",res.data.token)
+           localStorage.setItem('token',res.data.token)
+           window.localStorage.setItem("isLoggedin",true)
            window.location.href='/'
         }
     }
