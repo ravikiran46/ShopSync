@@ -2,6 +2,7 @@ import axios from 'axios'
 import { React, useEffect, useState} from 'react'
 import Home from '../components/Home'
 import { Link } from 'react-router-dom'
+import Container from "../components/Container"
 
 const Accountpage = () => {
   const [userinfo, setuserinfo] = useState([])
@@ -30,16 +31,16 @@ const Accountpage = () => {
       }
     }
     handleinfo();
-        
-        
-      },[])
+  },[])
       
   if(logged === false) return <Home />
   
   
   return (
+    <div className='bg-gray-100 '>
       <Home>
-        <div className='grid grid-cols-2 m-4 p-2 bg-gray-100 '>
+        <Container>
+        <div className='grid grid-cols-2 m-4 p-2'>
           <div className='mx-4'>
             <div className='h-fit rounded-lg shadow-md bg-white w-fit'>
               <div className='p-4'>
@@ -78,7 +79,9 @@ const Accountpage = () => {
             <Details/>
           </div>
         </div>
+        </Container>
       </Home>
+      </div>
   )
 }
 
