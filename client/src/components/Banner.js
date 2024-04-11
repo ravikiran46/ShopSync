@@ -1,8 +1,6 @@
 import React from "react";
-import eg from "../assets/eg.jpg";
-import eg1 from "../assets/eg1.jpg";
+
 const Banner = () => {
-  const stylebgimg = [eg1, eg];
   return (
     <div>
       {/* <div className="flex justify-center overflow-hidden  m-auto rounded-lg relative w-full">
