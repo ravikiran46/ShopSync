@@ -71,7 +71,6 @@ const Render = (props) => {
           "x-aut-token" : `${token}`
         }
       },
-      
       )
       if(res){
         toast.success(res.data.message)
@@ -79,7 +78,6 @@ const Render = (props) => {
       else{
         toast.error(res.data.message)
       }
-      
     }
     catch(error){
       console.log(error)

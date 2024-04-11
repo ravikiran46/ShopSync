@@ -4,6 +4,7 @@ import Container from '../components/Container'
 import CountToggle from '../components/CountToggle'
 import axios from 'axios'
 import toast from "react-hot-toast"
+import { Link } from 'react-router-dom'
 
 const priceformat = (price)=>{
   return new Intl.NumberFormat(
@@ -118,17 +119,21 @@ const handleDelete=async(id)=>{
         
         cart.map((item)=>{
           return (
-            <div key={item.productId} className='mb-10'>
-              <div className='gap-5 lg:gap-[30px] flex justify-between items-center'>
-              <img src={item.image} alt="product" className='h-[100px] w-[150px]  object-contain'/>
-              <p className='font-sans font-thin text-pretty'>{item.name}</p>
-              </div>
-              <div className='flex m-4 gap-4 lg:gap-[90px]'>
-              <CountToggle amount={item.quantity} setincrement={()=>setincrement(item.quantity)} setdecrement={()=>setdecrement(item.quantity)}  />
-              <span className='font-medium'>{priceformat(item.price)}</span>
-              <span className='bg-slate-100 hover:cursor-pointer' onClick={()=>handleDelete(item.productId)}>🗑️</span>
-              </div>
+            <div>
+            <Link to={`/product/${item.productId}`}>
+              <div key={item.productId} className='mb-10'>
+                <div className='gap-5 lg:gap-[30px] flex  items-center'>
+                  <img src={item.image} alt="product" className='h-[100px] w-[150px]  object-contain'/>
+                  <p className='font-sans font-thin text-pretty'>{item.name}</p>
+                </div>
             </div>  
+            </Link>
+              <div className='flex m-4 gap-4 lg:gap-[90px]'>
+                <CountToggle amount={item.quantity} setincrement={()=>setincrement(item.quantity)} setdecrement={()=>setdecrement(item.quantity)}  />
+                <span className='font-medium'>{priceformat(item.price)}</span>
+                <span className='bg-slate-100 hover:cursor-pointer' onClick={()=>handleDelete(item.productId)}>🗑️</span>
+              </div>
+            </div>
           )
         })}
       </div>  
@@ -144,7 +149,7 @@ const CartSummary=({cart,setCart,totalamount,settotalamount,handletotalprice})=>
   })
 
   return(
-    <div className='p-3 bg-slate-200 rounded-md shadow-md min-w-full h-auto lg:m-11'>
+    <div className='p-3 bg-slate-100 rounded-md shadow-md min-w-full h-auto lg:m-11'>
       <h1 className='text-xl font-normal'>Price Summary</h1>
       <br />
       <hr/>
