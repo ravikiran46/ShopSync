@@ -97,14 +97,14 @@ const Render = (props) => {
         </div>
       </div>
       <div>
-        <h2 className='text-2xl text-justify'>{name}</h2> 
+        <h2 className='text-2xl text-wrap'>{name}</h2> 
         <span className='text-3xl font-bold'>{priceformat(price)}</span>
         <div className='flex items-center'>
           <Rating value={rating} readOnly />
           <p>({reviews.length}) reviews</p>
         </div>
         <div>
-          <p className="text-justify">{description}</p>
+          <p className="text-wrap">{description}</p>
         </div>
         <br />
         <hr/>

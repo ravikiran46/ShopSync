@@ -52,6 +52,22 @@ const CartComp = () => {
     });
     settotalamount(price);
   }
+  if(!token){
+    return(
+      <Home >
+      <Container>
+      <div className='p-5 text-center mb-10 border-2 shadow-sm mt-5  rounded'>
+      <h1 className='text-2xl'>Your Cart is Empty!</h1> 
+      <p className=''>Login to view cart </p>
+      <br />
+      <Link to={"/login"} className='bg-amber-400 p-[10px] text-center text-xl rounded hover:bg-amber-500'>
+        LOGIN
+    </Link>
+   </div>
+   </Container>
+      </Home>
+    )
+  }
   
 
   return (
@@ -113,18 +129,25 @@ const handleDelete=async(id)=>{
 
   return(
     <div className='lg:m-5 p-5'>  
-      <div className='border-2 p-5 rounded-md shadow-md'>
+      <div className='border-2 p-1 rounded-md shadow-md '>
         {
-          cart.length ===0?<h1>Your Cart is Empty!</h1>:
+          cart.length ===0 ? 
+          (
+            <div className='grid grid-cols-1'>
+              <div className='p-20 w-auto'>
+              </div>
+            </div>
+            
+          ) :
         
         cart.map((item)=>{
           return (
             <div>
             <Link to={`/product/${item.productId}`}>
-              <div key={item.productId} className='mb-10'>
+              <div key={item.productId} className='mb-10 p-1 overflow-auto'>
                 <div className='gap-5 lg:gap-[30px] flex  items-center'>
                   <img src={item.image} alt="product" className='h-[100px] w-[150px]  object-contain'/>
-                  <p className='font-sans font-thin text-pretty'>{item.name}</p>
+                  <p className='font-sans font-thin text-ellipsis'>{item.name}</p>
                 </div>
             </div>  
             </Link>
@@ -152,13 +175,17 @@ const CartSummary=({cart,setCart,totalamount,settotalamount,handletotalprice})=>
     <div className='p-3 bg-slate-100 rounded-md shadow-md min-w-full h-auto lg:m-11'>
       <h1 className='text-xl font-normal'>Price Summary</h1>
       <br />
-      <hr/>
+      <hr   />
       <div className='mt-3 flex flex-col gap-y-4'>
         <p>Total Items: {cart.length}</p>
         <p>Delivery Charges: {123}</p>
         <hr />
         <p className='text-xl font-medium'>Total Amount:   &nbsp; &nbsp;  {priceformat(totalamount)}</p>
-        <button className='bg-amber-400 p-[5px] hover:bg-amber-500'>Place Order</button>
+        
+        <Link to={"/orders"} className='bg-amber-400 p-[5px] text-center hover:bg-amber-500'>
+            PLACE ORDER
+        </Link>
+  
       </div>
     </div>
   )
