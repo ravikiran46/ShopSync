@@ -11,31 +11,34 @@ const addToCart = async (req, res) => {
       );
       if (itemindex !== -1) {
         user.products[itemindex].quantity += Number(quantity);
-        totalamount =
-          user.products[itemindex].quantity * user.products[itemindex].price;
-        user.products[itemindex].totalamount = totalamount;
+        totalamount = Number(quantity) * user.products[itemindex].price;
+        user.totalamount += totalamount;
         await user.save();
         res.json({
           status: 201,
           message: "Item quantity updated in your Cart",
         });
       } else {
-        totalamount = Number(quantity) * price;
         let product = {
           productId: itemid,
           quantity: Number(quantity),
           name: name,
           image: image,
           price: price,
-          totalamount: totalamount,
         };
         console.log(product);
         user.products.push(product);
+        totalamount =
+          user.products[user.products.length - 1].quantity *
+          user.products[user.products.length - 1].price;
+        user.totalamount += totalamount;
         await user.save();
-        res.json({ status: 201, message: "Item add to your Cart" });
+        res.json({
+          status: 201,
+          message: "Item add to your Cart",
+        });
       }
     } else {
-      let totalamount = Number(quantity) * price;
       let newcart = new cartModel({
         userId: req.user.id,
         products: [
@@ -45,9 +48,9 @@ const addToCart = async (req, res) => {
             name: name,
             image: image,
             price: price,
-            totalamount: totalamount,
           },
         ],
+        totalamount: Number(quantity) * Number(price),
       });
       console.log(newcart);
       await newcart.save();
@@ -81,10 +84,21 @@ const removeFromCart = async (req, res) => {
     let usercart = await cartModel.findOne({ userId: req.user.id });
     if (!usercart) return res.json({ status: 404, message: "No User Found" });
 
-    usercart.products.pull({ productId: produtId });
-    await usercart.save();
+    let itemindex = usercart.products.findIndex(
+      (product) => product.productId === produtId
+    );
+    if (itemindex !== -1) {
+      let totalamount =
+        usercart.products[itemindex].quantity *
+        usercart.products[itemindex].price;
+      usercart.products.pull({ productId: produtId });
+      usercart.totalamount -= totalamount;
+      await usercart.save();
 
-    return res.json({ status: 200, message: "Removed from Cart Successfully" });
+      res.json({ status: 200, message: "Removed from Cart Successfully" });
+    } else {
+      res.json({ status: 404, message: "Item not found in Cart" });
+    }
   } catch (error) {
     console.log(error);
     return res.json({ status: 500, message: "Something went wrong!" });
