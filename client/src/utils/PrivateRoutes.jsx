@@ -4,7 +4,10 @@ const PrivateRoutes = () => {
   const auth = window.localStorage.getItem("isLoggedin")
 
   return (
-    auth ? <Outlet/> : <Navigate to="/login"/>
+    auth ? <Outlet/> : (
+    <Navigate to="/login"/>
+  )
+
   )
 }
 

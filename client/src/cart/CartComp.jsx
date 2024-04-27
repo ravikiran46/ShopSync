@@ -129,12 +129,24 @@ const handleDelete=async(id)=>{
 
   return(
     <div className='lg:m-5 p-5'>  
-      <div className='border-2 p-1 rounded-md shadow-md '>
+      <div className='border-2 p-1 rounded-md shadow-md text-wrap'>
         {
           cart.length ===0 ? 
           (
             <div className='grid grid-cols-1'>
-              <div className='p-20 w-auto'>
+              <div className='w-auto text-wrap p-3 lg:p-14'>
+                <span className='text-xl '>
+                Your Cart is Empty!
+                </span>
+                <br />
+               <span>
+               add items to your cart
+                </span>                 
+                <br />
+                <br />
+                <Link to={"/"} className='border-2 p-2 bg-blue-500 text-white rounded-md shadow-md text-wrap'>
+                  Shop now
+                </Link>
               </div>
             </div>
             
@@ -182,7 +194,7 @@ const CartSummary=({cart,setCart,totalamount,settotalamount,handletotalprice})=>
         <hr />
         <p className='text-xl font-medium'>Total Amount:   &nbsp; &nbsp;  {priceformat(totalamount)}</p>
         
-        <Link to={"/orders"} className='bg-amber-400 p-[5px] text-center hover:bg-amber-500'>
+        <Link to={"/checkout"} className='bg-amber-400 p-[5px] text-center hover:bg-amber-500'>
             PLACE ORDER
         </Link>
   

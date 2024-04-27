@@ -33,8 +33,8 @@ const Navbar = ({ log }) => {
             <div
               className={
                 log
-                  ? "flex text-center p-2 justify-center items-center min-w-24 h-9 rounded-md hover:text-lg duration-300 "
-                  : "flex text-center p-2 justify-center items-center min-w-24 h-9 rounded-md hover:bg-blue-500 hover:text-slate-50 "
+                  ? "flex text-center p-2 justify-center items-center min-w-24 h-9 rounded-md hover:text-lg  duration-500"
+                  : "flex text-center p-2 justify-center items-center min-w-24 h-9 rounded-md hover:bg-blue-500 hover:text-slate-50"
               }
             >
               {log ? (
