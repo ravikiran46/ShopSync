@@ -2,7 +2,7 @@ const cartModel = require("../schema/Cartschema");
 
 const addToCart = async (req, res) => {
   const { itemid, quantity, name, image, price } = req.body;
-
+  let totalamount;
   try {
     let user = await cartModel.findOne({ userId: req.user.id });
     if (user) {
@@ -11,18 +11,23 @@ const addToCart = async (req, res) => {
       );
       if (itemindex !== -1) {
         user.products[itemindex].quantity += Number(quantity);
+        totalamount =
+          user.products[itemindex].quantity * user.products[itemindex].price;
+        user.products[itemindex].totalamount = totalamount;
         await user.save();
         res.json({
           status: 201,
           message: "Item quantity updated in your Cart",
         });
       } else {
+        totalamount = Number(quantity) * price;
         let product = {
           productId: itemid,
           quantity: Number(quantity),
           name: name,
           image: image,
           price: price,
+          totalamount: totalamount,
         };
         console.log(product);
         user.products.push(product);
@@ -30,6 +35,7 @@ const addToCart = async (req, res) => {
         res.json({ status: 201, message: "Item add to your Cart" });
       }
     } else {
+      let totalamount = Number(quantity) * price;
       let newcart = new cartModel({
         userId: req.user.id,
         products: [
@@ -39,6 +45,7 @@ const addToCart = async (req, res) => {
             name: name,
             image: image,
             price: price,
+            totalamount: totalamount,
           },
         ],
       });
