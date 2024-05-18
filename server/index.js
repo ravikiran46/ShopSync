@@ -76,7 +76,7 @@ app.use("/cart", require("./routes/CartRoutes"));
 
 app.use("/checkout", require("./routes/PaymentRoutes"));
 
-app.use("/orders", require("./routes/orderroutes"));
+app.use("/orders", require("./routes/OrderRoutes"));
 
 app.listen(5000, () => {
   console.log("connected server");
