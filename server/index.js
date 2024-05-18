@@ -12,6 +12,7 @@ const cookieParser = require("cookie-parser");
 // cros
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 const dburl = process.env.DB_URI;
 
@@ -72,6 +73,10 @@ app.use("/auth", require("./routes/auth"));
 
 //cart
 app.use("/cart", require("./routes/CartRoutes"));
+
+app.use("/checkout", require("./routes/PaymentRoutes"));
+
+app.use("/orders", require("./routes/orderroutes"));
 
 app.listen(5000, () => {
   console.log("connected server");
