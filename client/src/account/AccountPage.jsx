@@ -52,7 +52,7 @@ const Accountpage = () => {
                 <hr />
                 <br />
                 <div className=''>
-                  <Link to='/'>
+                  <Link to='/myorders'>
                     <button className='font-medium  hover:text-blue-600'>My Orders</button>
                   </Link>
                   <br />

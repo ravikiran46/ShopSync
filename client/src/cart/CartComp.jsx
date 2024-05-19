@@ -30,9 +30,6 @@ const CartComp = () => {
        if(res.status ===200){
         setCart(res.data.usercart.products)
        }
-       else{
-        console.log(res.status)
-       }
     }
     catch(err){
       console.log(err)

@@ -85,6 +85,74 @@ const Render = (props) => {
     
   }
 
+  const handleOrder= async(totalamount)=>{
+    const token = window.localStorage.getItem("token")
+    if(!token){
+     return  toast.error("Login Required");
+    } 
+    try {
+      let res = await axios.post(
+        "https://ecommerce-xi-wheat-32.vercel.app/checkout/",
+        {
+          amount: totalamount,
+        }
+      );
+      const options = {
+        key: process.env.REACT_APP_Razor_key_id,
+        amount: res.data.order.amount,
+        currency: "INR",
+        name: "ShopSync",
+        description: "Test Transaction  for testing purpose",
+        image:
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShyEfii06Lr75Iqup2IRHhUmdqa9uVShkJxxynuAhEgw&s",
+        order_id: res.data.order.id,
+        handler: async (response) => {
+          try {
+            const { data } = await axios.post(
+              "https://ecommerce-xi-wheat-32.vercel.app/checkout/paymentverify",
+              {
+                ...response,
+                items: {
+                  productId : id,
+                  quantity : amount,
+                  name : name,
+                  image : images[0]?.image,
+                  price : price
+                },
+              },
+              {
+                headers: {
+                  "x-aut-token": `${token}`,
+                },
+              }
+            );
+            if (data) {
+              window.location.href = "/success"
+            }
+          } catch (error) {
+            console.log(error);
+          }
+        },
+        prefill: {
+          name: "user1", //your customer's name
+          email: "user1@example.com",
+          contact: "9000090000",
+        },
+        notes: {
+          address: "Razorpay Corporate Office",
+        },
+        theme: {
+          color: "#3b83f7",
+        },
+      };
+      const razor = new window.Razorpay(options);
+      razor.open();
+    } catch (err) {
+      console.log(err);
+    }
+
+  }
+
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-2 m-5 mr-8'>
@@ -123,7 +191,14 @@ const Render = (props) => {
                         setincrement={setincrement}
                        setdecrement={setdecrement}/>
                     </div>
-           <div className="mt-4 flex justify-between">
+           <div className="mt-4 flex gap-5">
+          <button
+            className="bg-amber-500  hover:bg-amber-600
+      transition duration-200 ease-in-out rounded-lg shadow-md px
+      8 py-2 p-3 text-white "
+          onClick={()=> handleOrder(amount * price)}>
+            Buy Now
+          </button>
           <button
             className="bg-green-600 hover:bg-green-700
       transition duration-200 ease-in-out rounded-lg shadow-md px
