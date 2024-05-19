@@ -1,4 +1,4 @@
-const { cartModel } = require("../schema/Cartschema");
+const cartModel = require("../schema/Cartschema");
 
 const addToCart = async (req, res) => {
   const { itemid, quantity, name, image, price } = req.body;
