@@ -18,4 +18,4 @@ const schema  = mongoose.Schema(
     }
 )
 
-mongoose.model("userData",schema)
+module.exports =  mongoose.model("userdatas",schema)
